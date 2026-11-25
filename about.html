@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090B0E">
+<meta name="description" content="About the project.">
+<title>The Order of Forest Guardians — The Enchanted Forest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/magic.css">
+</head>
+<body>
+
+<a class="sr-only" href="#main">Skip to content</a>
+<header class="app-header">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="The Enchanted Forest — home">
+      <svg class="crest" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8cf94"/><stop offset="1" stop-color="#80663D"/></linearGradient></defs>
+<path d="M32 3 56 11v22c0 14-10 23-24 28C18 56 8 47 8 33V11z" fill="#101722" stroke="url(#cg)" stroke-width="2.5"/>
+<path d="M32 9 50 15v18c0 10-7 17-18 21C21 50 14 43 14 33V15z" fill="none" stroke="#C5A15B" stroke-opacity=".5" stroke-width="1"/>
+<path d="M32 16l-9 12h5l-7 10h6l-4 7h18l-4-7h6l-7-10h5z" fill="#3C8060" stroke="#6fc29a" stroke-width=".8"/>
+<path d="M32 30c3 3 5 6 5 9a5 5 0 0 1-10 0c0-1.5.6-2.6 1.4-3.6.4 1.6 1.4 2.4 2.4 2.4.8-1.6.6-4.6 1.2-7.8z" fill="#D99B40"/>
+<rect x="31" y="46" width="2" height="8" fill="#C5A15B"/></svg>
+      <span><span class="brand-name">THE ENCHANTED FOREST</span><span class="brand-sub">Department of Magical Forest Protection</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="app-nav" aria-label="Main">
+      <a href="/" class="nav-link" data-nav="hall">The Great Hall<small>Main Dashboard</small></a>
+      <a href="/#forest" class="nav-link" data-nav="forest">Forbidden Forest<small>Environmental Monitoring</small></a>
+      <a href="/#map" class="nav-link" data-nav="map">The Marauder’s Map<small>Forest Overview</small></a>
+      <a href="logs.html" class="nav-link" data-nav="logs">Spellbook Archives<small>Historical Logs</small></a>
+      <a href="settings.html" class="nav-link" data-nav="settings">Potions &amp; Runes<small>System Configuration</small></a>
+      <a href="about.html" class="nav-link active" data-nav="about" aria-current="page">About the Order<small>About Project</small></a>
+    </nav>
+    <div class="header-status" title="Magical status seal — gateway connection">
+      <span class="status-chip" data-seal="1" data-level="unknown">Connecting…</span>
+    </div>
+  </div>
+</header>
+<main class="app-main" id="main">
+  <h1 class="page-title">THE ORDER OF FOREST GUARDIANS</h1>
+  <div class="orn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l2.4 8.6L23 12l-8.6 2.4L12 23l-2.4-8.6L1 12l8.6-2.4z"/></svg></div>
+  <p class="page-sub">Smart EcoGuard — an AI-IoT system that watches the forest, estimates the risk of fire, and lets a human deploy suppression.</p>
+
+  <div class="sect-head"><h2>Our Objective</h2></div>
+  <div class="parch-card reveal">
+    <p>The Order exists to detect the conditions that precede a forest fire as early as possible, show them clearly to a human operator, and give that operator a single deliberate control to deploy fire suppression. Telemetry is gathered by a remote sensor node, relayed over long-range <b>LoRa</b> radio to an <b>ESP8266</b> gateway, and read by a <b>Flask</b> backend that scores the risk and serves this dashboard.</p>
+  </div>
+
+  <div class="sect-head"><h2>The Chain of Enchantment</h2><p>How a reading travels</p></div>
+  <div class="arch reveal" role="list">
+    <div class="tome node hover" role="listitem"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 6v8M24 34v8M6 24h8M34 24h8"/><circle cx="24" cy="24" r="8"/><circle cx="24" cy="24" r="2.5" fill="currentColor"/></svg><h3>Sensor Node</h3><p>Reads temperature, humidity, pressure and MQ-4 gas, then transmits the reading.</p></div>
+    <div class="tome node hover" role="listitem"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 20a20 20 0 0 1 28 0M15 26a12 12 0 0 1 18 0M20 32a5 5 0 0 1 8 0"/><circle cx="24" cy="38" r="2" fill="currentColor"/></svg><h3>LoRa Radio</h3><p>SX1278 module at 433&nbsp;MHz carries the message across the forest.</p></div>
+    <div class="tome node hover" role="listitem"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="22" width="32" height="16" rx="3"/><path d="M16 22v-8M32 22v-8M14 14h4M30 14h4M16 30h2M22 30h2"/></svg><h3>ESP8266 Gateway</h3><p>Receives LoRa packets and serves <code style="font-family:var(--f-mono);font-size:12px">/api/data</code>; sends a LoRa DEPLOY command when asked.</p></div>
+    <div class="tome node hover" role="listitem"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6h12M20 6v12L8 38a4 4 0 0 0 4 6h24a4 4 0 0 0 4-6L28 18V6"/><path d="M14 32h20"/></svg><h3>Flask Backend</h3><p>Polls the gateway, computes the risk score, runs the Random Forest, serves the API.</p></div>
+    <div class="tome node hover" role="listitem"><svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="9" width="36" height="26" rx="3"/><path d="M16 42h16M24 35v7M12 28l7-8 6 5 9-11"/></svg><h3>This Dashboard</h3><p>Plain HTML, CSS and JavaScript polling the backend every two seconds.</p></div>
+  </div>
+
+  <div class="sect-head"><h2>The Ancient Knowledge</h2><p>Technical details</p></div>
+  <div class="grid g-two">
+    <div class="parch-card reveal">
+      <h3>Fire-Risk Calculation</h3>
+      <p>The backend computes a single <b>weighted environmental index</b> (0–100) from the readings it actually receives: temperature, humidity, MQ-4 gas and, when available, pressure. Missing sensors are left out and the remaining weights are renormalised. The score maps to five levels — minimal, low, moderate, high and critical. The dashboard only displays this value; it never computes its own.</p>
+    </div>
+    <div class="parch-card reveal">
+      <h3>Random Forest Classification</h3>
+      <p>A scikit-learn Random Forest classifies each reading as <b>None</b>, <b>Potential Fire</b> or <b>Confirmed Fire</b> and reports class probabilities. Unless a labelled dataset is supplied, the model is an <b>experimental baseline</b> and is marked so. It is a prediction, not a guarantee.</p>
+    </div>
+    <div class="parch-card reveal">
+      <h3>Fire Suppression Mechanism</h3>
+      <p>Suppression is <b>manual only</b>. After you confirm, the dashboard sends <code>POST /api/deploy</code>; the backend asks the gateway to deploy, and the gateway transmits a LoRa <code>DEPLOY</code> command. Neither the risk score nor the Oracle ever triggers it automatically.</p>
+    </div>
+    <div class="parch-card reveal">
+      <h3>Staleness &amp; Honesty</h3>
+      <p>If the gateway is unreachable or its data is old, the interface says so (<b>ESP OFFLINE</b> / <b>STALE DATA</b>) and shows <b>N/A</b> instead of inventing numbers.</p>
+    </div>
+  </div>
+
+  <div class="sect-head"><h2>Instruments &amp; Tools</h2></div>
+  <div class="chips reveal">
+    <span class="chip">ESP8266 Gateway</span><span class="chip">LoRa SX1278 · 433 MHz</span><span class="chip">MQ-4 Gas Sensor</span>
+    <span class="chip">Temperature · Humidity · Pressure</span><span class="chip">Python · Flask</span><span class="chip">scikit-learn Random Forest</span>
+    <span class="chip">REST API</span><span class="chip">HTML · CSS · Vanilla JS</span>
+  </div>
+</main>
+<footer class="app-footer">
+  <div class="orn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l2.4 8.6L23 12l-8.6 2.4L12 23l-2.4-8.6L1 12l8.6-2.4z"/></svg></div>
+  <b>THE ENCHANTED FOREST</b><br>
+  Protecting the Forbidden Forest, One Spell at a Time.<br>
+  <small>A themed interface for the Smart EcoGuard AI-IoT Forest Fire Detection &amp; Suppression System.</small>
+</footer>
+<script src="/static/magic.js" defer></script>
+</body>
+</html>

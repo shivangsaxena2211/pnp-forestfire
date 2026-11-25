@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090B0E">
+<meta name="description" content="Forest fire detection & suppression command center, in the Wizarding World.">
+<title>The Enchanted Forest — Department of Magical Forest Protection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/magic.css">
+</head>
+<body>
+
+<a class="sr-only" href="#main">Skip to content</a>
+<header class="app-header">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="The Enchanted Forest — home">
+      <svg class="crest" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8cf94"/><stop offset="1" stop-color="#80663D"/></linearGradient></defs>
+<path d="M32 3 56 11v22c0 14-10 23-24 28C18 56 8 47 8 33V11z" fill="#101722" stroke="url(#cg)" stroke-width="2.5"/>
+<path d="M32 9 50 15v18c0 10-7 17-18 21C21 50 14 43 14 33V15z" fill="none" stroke="#C5A15B" stroke-opacity=".5" stroke-width="1"/>
+<path d="M32 16l-9 12h5l-7 10h6l-4 7h18l-4-7h6l-7-10h5z" fill="#3C8060" stroke="#6fc29a" stroke-width=".8"/>
+<path d="M32 30c3 3 5 6 5 9a5 5 0 0 1-10 0c0-1.5.6-2.6 1.4-3.6.4 1.6 1.4 2.4 2.4 2.4.8-1.6.6-4.6 1.2-7.8z" fill="#D99B40"/>
+<rect x="31" y="46" width="2" height="8" fill="#C5A15B"/></svg>
+      <span><span class="brand-name">THE ENCHANTED FOREST</span><span class="brand-sub">Department of Magical Forest Protection</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="app-nav" aria-label="Main">
+      <a href="/" class="nav-link active" data-nav="hall" aria-current="page">The Great Hall<small>Main Dashboard</small></a>
+      <a href="/#forest" class="nav-link" data-nav="forest">Forbidden Forest<small>Environmental Monitoring</small></a>
+      <a href="/#map" class="nav-link" data-nav="map">The Marauder’s Map<small>Forest Overview</small></a>
+      <a href="logs.html" class="nav-link" data-nav="logs">Spellbook Archives<small>Historical Logs</small></a>
+      <a href="settings.html" class="nav-link" data-nav="settings">Potions &amp; Runes<small>System Configuration</small></a>
+      <a href="about.html" class="nav-link" data-nav="about">About the Order<small>About Project</small></a>
+    </nav>
+    <div class="header-status" title="Magical status seal — gateway connection">
+      <span class="status-chip" id="headerStatus" data-level="unknown">Connecting…</span>
+    </div>
+  </div>
+</header>
+<main class="app-main" id="main">
+
+  <!-- ====== HERO ====== -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="moon" aria-hidden="true"></div>
+    <svg class="castle" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><defs><linearGradient id="cfade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a0f14" stop-opacity="0"/><stop offset="1" stop-color="#0a0f14"/></linearGradient></defs><g transform="translate(110 0)"><rect x="40" y="150" width="60" height="150" fill="#0a0f14"/><polygon points="36,150 70.0,110 104,150" fill="#080c10"/><rect x="50" y="200" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="72" y="200" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="50" y="268" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="106" y="190" width="40" height="110" fill="#0a0f14"/><rect x="107" y="184" width="7" height="7" fill="#0a0f14"/><rect x="119" y="184" width="7" height="7" fill="#0a0f14"/><rect x="131" y="184" width="7" height="7" fill="#0a0f14"/><rect x="158" y="110" width="70" height="190" fill="#0a0f14"/><polygon points="154,110 193.0,50 232,110" fill="#080c10"/><rect x="212" y="126" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="168" y="160" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="168" y="194" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="212" y="228" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="190" y="262" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="240" y="170" width="50" height="130" fill="#0a0f14"/><rect x="241" y="164" width="7" height="7" fill="#0a0f14"/><rect x="253" y="164" width="7" height="7" fill="#0a0f14"/><rect x="265" y="164" width="7" height="7" fill="#0a0f14"/><rect x="277" y="164" width="7" height="7" fill="#0a0f14"/><rect x="250" y="186" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="272" y="220" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="250" y="254" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="272" y="254" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="296" y="60" width="90" height="240" fill="#0a0f14"/><polygon points="292,60 341.0,-30 390,60" fill="#080c10"/><rect x="328" y="76" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="350" y="76" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="372" y="76" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="306" y="110" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="328" y="110" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="350" y="110" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="328" y="144" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="350" y="144" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="306" y="178" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="328" y="178" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="306" y="212" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="306" y="246" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="350" y="246" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="372" y="246" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="392" y="180" width="40" height="120" fill="#0a0f14"/><rect x="393" y="174" width="7" height="7" fill="#0a0f14"/><rect x="405" y="174" width="7" height="7" fill="#0a0f14"/><rect x="417" y="174" width="7" height="7" fill="#0a0f14"/><rect x="402" y="264" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="438" y="130" width="60" height="170" fill="#0a0f14"/><polygon points="434,130 468.0,80 502,130" fill="#080c10"/><rect x="470" y="146" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="470" y="180" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="448" y="214" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="448" y="248" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="504" y="200" width="50" height="100" fill="#0a0f14"/><rect x="505" y="194" width="7" height="7" fill="#0a0f14"/><rect x="517" y="194" width="7" height="7" fill="#0a0f14"/><rect x="529" y="194" width="7" height="7" fill="#0a0f14"/><rect x="541" y="194" width="7" height="7" fill="#0a0f14"/><rect x="514" y="216" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="536" y="216" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="560" y="90" width="80" height="210" fill="#0a0f14"/><polygon points="556,90 600.0,20 644,90" fill="#080c10"/><rect x="570" y="106" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="592" y="106" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="592" y="140" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="614" y="140" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="570" y="208" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="592" y="208" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="614" y="208" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="570" y="242" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="592" y="242" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="614" y="242" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="570" y="276" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="646" y="175" width="45" height="125" fill="#0a0f14"/><rect x="647" y="169" width="7" height="7" fill="#0a0f14"/><rect x="659" y="169" width="7" height="7" fill="#0a0f14"/><rect x="671" y="169" width="7" height="7" fill="#0a0f14"/><rect x="656" y="191" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="656" y="225" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="693" y="140" width="70" height="160" fill="#0a0f14"/><polygon points="689,140 728.0,100 767,140" fill="#080c10"/><rect x="703" y="156" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="725" y="190" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="703" y="224" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="725" y="224" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="703" y="258" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="725" y="258" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="765" y="180" width="60" height="120" fill="#0a0f14"/><rect x="766" y="174" width="7" height="7" fill="#0a0f14"/><rect x="778" y="174" width="7" height="7" fill="#0a0f14"/><rect x="790" y="174" width="7" height="7" fill="#0a0f14"/><rect x="802" y="174" width="7" height="7" fill="#0a0f14"/><rect x="814" y="174" width="7" height="7" fill="#0a0f14"/><rect x="775" y="196" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="775" y="230" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="797" y="230" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="775" y="264" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.95"/><rect x="837" y="210" width="50" height="90" fill="#0a0f14"/><polygon points="833,210 862.0,180 891,210" fill="#080c10"/><rect x="847" y="226" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="869" y="226" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/><rect x="847" y="260" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.55"/><rect x="869" y="260" width="5" height="9" rx="2" fill="#e8cf94" opacity="0.8"/></g><rect x="0" y="260" width="1200" height="40" fill="url(#cfade)"/></svg>
+    <div class="eyebrow">Hogwarts · Wing of Environmental Wards</div>
+    <h1 id="heroTitle">THE ENCHANTED FOREST</h1>
+    <div class="dept">Department of Magical Forest Protection</div>
+    <div class="orn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l2.4 8.6L23 12l-8.6 2.4L12 23l-2.4-8.6L1 12l8.6-2.4z"/></svg></div>
+    <p class="sub">An ancient forest. A thousand hidden dangers. One enchanted defense system.</p>
+    <div class="tagline">“Protecting the Forbidden Forest, One Spell at a Time.”</div>
+    <div class="hero-status">
+      <div class="hero-seal main" id="heroSeal" data-level="unknown">
+        <span class="status-chip" id="liveIndicator" data-level="unknown">Connecting…</span>
+        <div><div class="k">Gateway link</div><div class="v" id="heroLink">—</div></div>
+      </div>
+      <div class="hero-seal" id="heroRisk" data-risk="unknown">
+        <div><div class="k">The Darkness Index</div><div class="v" id="heroRiskText">Awaiting the seers…</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== THE GREAT HALL ====== -->
+  <div class="sect-head" id="hall"><h2>The Great Hall</h2><p>Live instruments from the forest</p></div>
+
+  <section class="grid g-instr" id="sensorGrid" aria-label="Live monitoring instruments">
+      <article class="tome instrument hover reveal" id="box-temp" data-level="unknown">
+        <span class="glow" aria-hidden="true"></span>
+        <span class="state" id="st-temp">—</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6a4 4 0 0 1 8 0v20a8 8 0 1 1-8 0z"/><circle cx="24" cy="34" r="3.5" fill="currentColor"/><path d="M24 30V14" /><path d="M33 12c2 2 3 4 3 6a3 3 0 0 1-6 0c0-1 .5-2 1-2.6.3 1 .8 1.4 1.4 1.4.4-1 .4-3 .6-4.8zM12 16h4M12 22h4"/></svg>
+        <div class="s-label">The Flame Temperature</div>
+        <div class="s-real">Temperature</div>
+        <div class="s-val" id="val-temp">—<span class="s-unit">°C</span></div>
+        <div class="threshold-note">threshold 45°C</div>
+      </article>
+      <article class="tome instrument hover reveal" id="box-hum" data-level="unknown">
+        <span class="glow" aria-hidden="true"></span>
+        <span class="state" id="st-hum">—</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 5c7 9 12 15 12 22a12 12 0 0 1-24 0c0-7 5-13 12-22z"/><path d="M24 40c0-8 0-12 6-17M24 33c-4-1-7-4-8-8 4 0 7 2 8 8z"/></svg>
+        <div class="s-label">Forest Moisture</div>
+        <div class="s-real">Humidity</div>
+        <div class="s-val" id="val-hum">—<span class="s-unit">%</span></div>
+        <div class="threshold-note">threshold 20%</div>
+      </article>
+      <article class="tome instrument hover reveal" id="box-gas" data-level="unknown">
+        <span class="glow" aria-hidden="true"></span>
+        <span class="state" id="st-gas">—</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 28h28c0 8-6 14-14 14s-14-6-14-14z"/><path d="M8 28h32M16 24c0-3 3-3 3-6s-3-3-3-6M24 24c0-3 3-3 3-6s-3-3-3-6M32 24c0-3 3-3 3-6s-3-3-3-6"/><path d="M14 44l-2 3M34 44l2 3"/></svg>
+        <div class="s-label">Atmospheric Toxicity</div>
+        <div class="s-real">MQ-4 Gas</div>
+        <div class="s-val" id="val-gas">—<span class="s-unit">ppm</span></div>
+        <div class="threshold-note">threshold 50ppm</div>
+      </article>
+      <article class="tome instrument hover reveal" id="box-press" data-level="unknown">
+        <span class="glow" aria-hidden="true"></span>
+        <span class="state" id="st-press">—</span>
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="13" stroke-opacity=".5"/><path d="M24 24l8-9"/><circle cx="24" cy="24" r="2" fill="currentColor"/><path d="M24 7v3M41 24h-3M24 41v-3M7 24h3M12 12l2 2M36 12l-2 2"/></svg>
+        <div class="s-label">Atmospheric Pressure</div>
+        <div class="s-real">Pressure</div>
+        <div class="s-val" id="val-press">—<span class="s-unit">hPa</span></div>
+        <div class="threshold-note">from ESP when available</div>
+      </article>
+  </section>
+
+  <div class="grid g-two" style="margin-top:22px">
+
+    <!-- Darkness Index -->
+    <section class="tome analytics-panel reveal" id="darkness" data-risk="unknown">
+      <div class="tome-head"><div><h3>The Darkness Index</h3><p class="lede" style="margin:0">Probability of a dangerous fire disturbance.</p></div>
+        <span class="tag" id="analyticsFoot">Model recalculates every reading cycle</span></div>
+      <div class="gauge-wrap"><div class="gauge-container">
+        <svg class="risk-gauge" viewBox="0 0 120 120" aria-hidden="true">
+          <g class="gauge-rune"><circle cx="60" cy="60" r="57" fill="none" stroke="#C5A15B" stroke-opacity=".35" stroke-dasharray="1 5" stroke-width="2"/></g>
+          <circle cx="60" cy="60" r="43" fill="none" stroke="#C5A15B" stroke-opacity=".18" stroke-width=".8"/>
+          <circle class="gauge-bg" cx="60" cy="60" r="50"></circle>
+          <circle class="gauge-fg" id="gaugeFg" cx="60" cy="60" r="50" stroke-dasharray="314.159" stroke-dashoffset="314.159" data-level="unknown"></circle>
+        </svg>
+        <div class="gauge-center"><span class="gauge-score" id="gaugeScore">—</span><span class="gauge-label">Risk Score</span></div>
+      </div></div>
+      <div class="risk-state" id="riskState">Awaiting the seers<small id="riskStateSub">No risk value reported yet.</small></div>
+      <div class="legend-row" id="riskLegend" aria-label="Darkness Index states">
+        <span data-risk="minimal">Calm Forest</span><span data-risk="low">Minor Disturbance</span><span data-risk="moderate">Magical Instability</span><span data-risk="high">Dangerous Disturbance</span><span data-risk="critical">FOREST EMERGENCY</span>
+      </div>
+      <div class="verdict" style="font-size:15px;margin-top:16px"><span id="verdictText">Fire Prediction: —</span></div>
+      <div class="verdict-sub" id="verdictSub">Evaluating live ESP readings from the backend…</div>
+      <div class="reason-list" id="reasonList"></div>
+      <div class="analytics-foot"><span>Score &amp; level supplied by the Flask backend</span><span id="analyticsTrend">trend: —</span></div>
+    </section>
+
+    <!-- Oracle -->
+    <section class="tome panel factor-panel reveal" id="fireRiskFactor" data-level="unknown">
+      <div class="tome-head"><div><h3>The Oracle</h3><p class="lede" style="margin:0">Magical Prediction Engine</p></div>
+        <span class="tag" id="factorModelStatus">model: —</span></div>
+      <div class="orb-wrap"><div class="orb"><svg viewBox="0 0 200 220" aria-hidden="true"><defs>
+<radialGradient id="orbg" cx="38%" cy="32%"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".18" stop-color="#cfe9dd" stop-opacity=".25"/><stop offset=".7" stop-color="#101722" stop-opacity=".85"/><stop offset="1" stop-color="#000" stop-opacity=".95"/></radialGradient>
+<radialGradient id="orbc" cx="50%" cy="55%"><stop offset="0" stop-color="currentColor" stop-opacity=".95"/><stop offset=".6" stop-color="currentColor" stop-opacity=".25"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></radialGradient>
+<linearGradient id="stand" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8cf94"/><stop offset="1" stop-color="#6b5128"/></linearGradient></defs>
+<g style="color:var(--lvl-hi)">
+<path d="M52 182h96l-14-22H66z" fill="url(#stand)" stroke="#80663D"/><path d="M44 196h112l-8-14H52z" fill="url(#stand)" stroke="#80663D"/>
+<circle cx="100" cy="98" r="72" fill="#0b1118" stroke="#C5A15B" stroke-width="2"/>
+<circle cx="100" cy="98" r="70" fill="url(#orbc)"/>
+<g class="mist" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".7"><path d="M52 104c14-22 30 6 46-14s30 4 50-10"/><path d="M60 122c18-14 28 8 44-6s26 2 38-8" opacity=".6"/><path d="M70 82c12-10 22 4 32-6" opacity=".5"/></g>
+<circle cx="100" cy="98" r="70" fill="url(#orbg)"/>
+<ellipse cx="76" cy="62" rx="20" ry="9" fill="#fff" opacity=".35" transform="rotate(-30 76 62)"/></g></svg></div></div>
+      <div class="gauge-wrap" style="margin:0"><div class="gauge-container" style="width:150px">
+        <svg class="risk-gauge" viewBox="0 0 120 120" aria-hidden="true"><circle class="gauge-bg" cx="60" cy="60" r="50"></circle>
+          <circle class="gauge-fg" id="factorGaugeFg" cx="60" cy="60" r="50" stroke-dasharray="314.159" stroke-dashoffset="314.159" data-level="unknown"></circle></svg>
+        <div class="gauge-center" style="padding:14%"><span class="gauge-score factor-state" id="factorConfidence" style="font-size:12px">—</span><span class="gauge-label" style="font-size:8px">Fire Risk Factor</span></div>
+      </div></div>
+      <div class="verdict" id="factorPrediction" style="color:var(--lvl-hi)">NONE</div>
+      <div class="verdict-sub" id="factorSub">Waiting for backend Random Forest output…</div>
+      <div class="reason-list" id="factorProbs"></div>
+      <div class="analytics-foot"><span id="factorUpdated">Last update: —</span><span id="factorHint">prediction from /api/data only</span></div>
+      <p class="disclaimer">A Random Forest machine-learning prediction — a probabilistic estimate, not a guaranteed outcome.</p>
+    </section>
+  </div>
+
+  <div class="grid g-net" style="margin-top:22px">
+
+    <!-- Network -->
+    <section class="tome node-panel reveal" id="network" data-level="unknown">
+      <div class="tome-head"><div><h3>The Wizarding Network</h3><p class="lede" style="margin:0">ESP8266 gateway · LoRa link</p></div>
+        <span class="status-chip" id="statusChip" data-level="unknown">Connecting…</span></div>
+      <svg class="netviz offline" id="netviz" viewBox="0 0 400 96" aria-hidden="true">
+        <line class="link" x1="62" y1="48" x2="200" y2="48"/><line class="link" x1="200" y1="48" x2="338" y2="48"/>
+        <g fill="#101722" stroke="#C5A15B" stroke-width="1.6"><circle cx="50" cy="48" r="16"/><circle cx="200" cy="48" r="16"/><circle cx="350" cy="48" r="16"/></g>
+        <g fill="var(--lvl-hi)"><circle cx="50" cy="48" r="5"/><circle cx="200" cy="48" r="5"/><circle cx="350" cy="48" r="5"/></g>
+        <text x="50" y="82" text-anchor="middle">SENSOR NODE</text><text x="200" y="82" text-anchor="middle">GATEWAY</text><text x="350" y="82" text-anchor="middle">FLASK SEER</text>
+      </svg>
+      <dl class="kv">
+        <div><dt>Gateway</dt><dd id="kvGateway">—</dd></div>
+        <div><dt>Data freshness</dt><dd id="kvStale">—</dd></div>
+        <div><dt>Last successful reading</dt><dd id="h-seen">—</dd></div>
+        <div><dt>Gateway uptime</dt><dd id="uptime">—</dd></div>
+        <div><dt>LoRa sensor node</dt><dd id="kvNode">—</dd></div>
+        <div><dt>Gateway address</dt><dd id="kvIp">—</dd></div>
+        <div><dt>Battery</dt><dd id="h-batt">Not reported</dd></div>
+        <div><dt>Signal (RSSI)</dt><dd id="h-rssi">Not reported</dd></div>
+      </dl>
+      <div class="analytics-foot"><span id="lastSync">Last sync: —</span><span id="kvErr"></span></div>
+    </section>
+
+    <!-- Defensive Spells -->
+    <section class="tome spell controls-panel reveal" id="spells">
+      <h2>DEFENSIVE SPELLS</h2>
+      <p class="lede">Fire Suppression</p>
+      <button class="cast-btn ctrl-deploy" id="deployBtn" type="button" aria-haspopup="dialog">
+        <span id="deployLabel">CAST AQUA ERUCTO</span><small id="deploySub">Deploy Fire Suppression System</small>
+      </button>
+      <p class="fineprint">Never automatic. Nothing is sent until you confirm the incantation.</p>
+      <div class="aux-row">
+        <button class="ctrl-btn ctrl-silence" id="silenceBtn" type="button">Silence Owl Alerts</button>
+        <button class="ctrl-btn ctrl-test" id="testBtn" type="button">Test the Wards</button>
+      </div>
+      <div class="controls-note" id="controlsNote" role="status" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <!-- ====== FORBIDDEN FOREST ====== -->
+  <div class="sect-head" id="forest"><h2>Forbidden Forest</h2><p>Environmental monitoring · real readings from the backend</p></div>
+  <div class="grid g-two">
+    <section class="tome reveal">
+      <h3>Disturbance History</h3>
+      <p class="lede">Recent risk scores and temperature as recorded by the backend (<span id="histCount">0</span> samples).</p>
+      <svg class="chart" id="chartRisk" viewBox="0 0 400 150" preserveAspectRatio="none" aria-label="Risk score history"></svg>
+      <div class="analytics-foot"><span>Risk score (0–100)</span><span id="histRiskRange">—</span></div>
+      <svg class="chart" id="chartTemp" viewBox="0 0 400 150" preserveAspectRatio="none" style="margin-top:12px" aria-label="Temperature history"></svg>
+      <div class="analytics-foot"><span>Temperature (°C)</span><span id="histTempRange">—</span></div>
+    </section>
+    <section class="tome reveal">
+      <h3>Warding Telemetry</h3>
+      <p class="lede">What the seers are using — and what they cannot see.</p>
+      <dl class="kv">
+        <div><dt>Sensors in the index</dt><dd id="fUsed">—</dd></div>
+        <div><dt>Sensors missing</dt><dd id="fMissing">—</dd></div>
+        <div><dt>Smoke</dt><dd id="fSmoke">—</dd></div>
+        <div><dt>Flame</dt><dd id="fFlame">—</dd></div>
+        <div><dt>Node ID</dt><dd id="fNode">—</dd></div>
+        <div><dt>Parse status</dt><dd id="fParse">—</dd></div>
+      </dl>
+      <h3 style="margin-top:16px">Last raw message</h3>
+      <pre id="fRaw" style="margin:6px 0 0;padding:10px;border:1px solid var(--gold-faint);background:rgba(9,11,14,.6);font-family:var(--f-mono);font-size:12px;white-space:pre-wrap;word-break:break-word;max-height:120px;overflow:auto;color:var(--parchment)">—</pre>
+      <div class="legend" aria-label="Legend">
+        <div><i style="--c:var(--emerald)"></i>Healthy — nominal reading</div>
+        <div><i style="--c:var(--amber)"></i>Warning — approaching limit / stale data</div>
+        <div><i style="--c:var(--crimson)"></i>Emergency — over limit / gateway offline</div>
+        <div><i style="--c:var(--smoke)"></i>No data — reading not reported</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ====== MARAUDER'S MAP ====== -->
+  <div class="sect-head" id="map"><h2>The Marauder’s Map</h2><p>Forest monitoring overview</p></div>
+  <section class="tome reveal">
+    <div class="mapframe" id="mapFrame" data-level="unknown">
+      <span class="illus">ILLUSTRATIVE — NOT A GEOGRAPHIC MAP</span>
+      <svg viewBox="0 0 800 380" role="img" aria-label="Illustrative conceptual map of the forest with gateway and sensor node markers">
+        <defs><radialGradient id="mg" cx="50%" cy="50%"><stop offset="0" stop-color="#1a3328"/><stop offset="1" stop-color="#0a120e"/></radialGradient>
+        <radialGradient id="aura" cx="50%" cy="50%"><stop offset="0" stop-color="var(--lvl)" stop-opacity=".55"/><stop offset="1" stop-color="var(--lvl)" stop-opacity="0"/></radialGradient></defs>
+        <rect width="800" height="380" fill="url(#mg)"/>
+        <g id="mapTrees" fill="#0e1f17" stroke="#1d3a2b" stroke-width="1"></g>
+        <path class="footprints" d="M90 320C180 280 220 300 300 250S440 190 520 210 650 150 720 90"/>
+        <circle cx="300" cy="250" r="90" fill="url(#aura)" id="mapAuraN" opacity=".7"/>
+        <circle cx="520" cy="210" r="90" fill="url(#aura)" id="mapAuraG" opacity=".7"/>
+        <g id="mkNode" data-level="unknown" style="color:var(--lvl)"><circle class="marker-pulse" cx="300" cy="250" r="12" fill="var(--lvl)"/><circle cx="300" cy="250" r="9" fill="#101722" stroke="var(--lvl-hi)" stroke-width="2.5"/><circle cx="300" cy="250" r="3.5" fill="var(--lvl-hi)"/></g>
+        <g id="mkGate" data-level="unknown"><circle class="marker-pulse" cx="520" cy="210" r="12" fill="var(--lvl)"/><path d="M520 196l12 8v12l-12 8-12-8v-12z" fill="#101722" stroke="var(--lvl-hi)" stroke-width="2.5"/><circle cx="520" cy="210" r="3.5" fill="var(--lvl-hi)"/></g>
+        <g font-family="Cinzel,serif" font-size="12" letter-spacing="2" fill="#E5D6B5"><text x="300" y="284" text-anchor="middle">SENSOR NODE</text><text x="520" y="244" text-anchor="middle">GATEWAY</text></g>
+        <g font-family="Cormorant Garamond,serif" font-style="italic" font-size="15" fill="#80663D"><text x="40" y="350">Here be the Forbidden Forest…</text></g>
+        <g transform="translate(722 52)" fill="none" stroke="#C5A15B" stroke-width="1.4"><circle r="28"/><path d="M0-34V34M-34 0H34" stroke-opacity=".6"/><path d="M0-26l6 26-6 26-6-26z" fill="#C5A15B" fill-opacity=".5"/><text y="-38" text-anchor="middle" fill="#E5D6B5" stroke="none" font-family="Cinzel" font-size="11">N</text></g>
+      </svg>
+    </div>
+    <div class="grid g-three" style="margin-top:16px">
+      <div><h3>Gateway marker</h3><p class="lede" id="mapGate" style="margin:0">—</p></div>
+      <div><h3>Sensor-node marker</h3><p class="lede" id="mapNode" style="margin:0">—</p></div>
+      <div><h3>About this map</h3><p class="lede" style="margin:0">The backend supplies no GPS coordinates, so positions are decorative. Only the marker colours reflect real link status.</p></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ====== CONFIRMATION SCROLL ====== -->
+<div class="modal" id="spellModal" role="dialog" aria-modal="true" aria-labelledby="spellTitle" aria-describedby="spellDesc" hidden>
+  <div class="scroll">
+    <h2 id="spellTitle">Cast Aqua Eructo?</h2>
+    <p id="spellDesc">You are about to deploy the <b>fire suppression system</b>. This sends <code>POST /api/deploy</code>, and the gateway forwards a real <b>DEPLOY</b> command over LoRa to the suppression node.</p>
+    <p class="warn">This is never automatic and is not triggered by the Oracle’s prediction. Only continue if you intend to suppress a fire.</p>
+    <div class="acts">
+      <button type="button" class="no" id="spellCancel">Stay the Wand</button>
+      <button type="button" class="yes" id="spellConfirm">Cast the Spell</button>
+    </div>
+  </div>
+</div>
+
+<footer class="app-footer">
+  <div class="orn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l2.4 8.6L23 12l-8.6 2.4L12 23l-2.4-8.6L1 12l8.6-2.4z"/></svg></div>
+  <b>THE ENCHANTED FOREST</b><br>
+  Protecting the Forbidden Forest, One Spell at a Time.<br>
+  <small>A themed interface for the Smart EcoGuard AI-IoT Forest Fire Detection &amp; Suppression System.</small>
+</footer>
+
+<script src="/static/magic.js" defer></script>
+<script>
+/* ============================================================
+   The Enchanted Forest — live backend integration (unchanged logic)
+   Sensor values come only from GET /api/data (every 2 s).
+   Deployment is only ever sent by POST /api/deploy after an explicit confirmation.
+   ============================================================ */
+const API_BASE = location.protocol === 'file:'
+  ? 'http://127.0.0.1:8080'
+  : `http://${location.hostname}:8080`;
+const POLL_MS = 2000;
+
+const THRESH = {
+  temp:  { watch: 38, breach: 45 },
+  hum:   { watch: 28, breach: 20, invert: true },
+  press: { watch: 1000, breach: 980, invert: true },
+  gas:   { watch: 30, breach: 50 }
+};
+const SENSOR_META = {
+  temp:  { label: 'Temperature', unit: '\u00b0C',  api: 'temperature' },
+  hum:   { label: 'Humidity',    unit: '%',   api: 'humidity' },
+  press: { label: 'Pressure',    unit: 'hPa', api: 'pressure' },
+  gas:   { label: 'MQ-4 Gas',    unit: 'ppm', api: 'mq4' }
+};
+const RISK_TEXT = {
+  minimal:  { name: 'Calm Forest',           sub: 'Minimal risk \u2014 the wards are quiet.',        lvl: 'safe' },
+  low:      { name: 'Minor Disturbance',     sub: 'Low risk \u2014 a faint tremor in the trees.',    lvl: 'safe' },
+  moderate: { name: 'Magical Instability',   sub: 'Moderate risk \u2014 the air grows restless.',    lvl: 'warn' },
+  high:     { name: 'Dangerous Disturbance', sub: 'High risk \u2014 the forest is in peril.',        lvl: 'warn' },
+  critical: { name: 'FOREST EMERGENCY',      sub: 'Critical risk \u2014 summon the Guardians!',      lvl: 'crit' }
+};
+const $ = (id) => document.getElementById(id);
+const state = { temp: null, hum: null, press: null, gas: null };
+const CIRC = 2 * Math.PI * 50;
+
+const gaugeFg = $('gaugeFg'), gaugeScore = $('gaugeScore'), verdictText = $('verdictText'), verdictSub = $('verdictSub'),
+  reasonList = $('reasonList'), statusChip = $('statusChip'), headerStatus = $('headerStatus'), liveIndicator = $('liveIndicator'),
+  analyticsTrend = $('analyticsTrend'), analyticsFoot = $('analyticsFoot'), lastSync = $('lastSync'), controlsNote = $('controlsNote'),
+  factorGaugeFg = $('factorGaugeFg'), factorConfidence = $('factorConfidence'), factorPrediction = $('factorPrediction'),
+  factorSub = $('factorSub'), factorProbs = $('factorProbs'), factorModelStatus = $('factorModelStatus'), factorUpdated = $('factorUpdated');
+gaugeFg.setAttribute('stroke-dasharray', CIRC);
+factorGaugeFg.setAttribute('stroke-dasharray', CIRC);
+
+const FACTOR_CLASSES = [
+  { key: 'None', label: 'NONE' }, { key: 'Potential Fire', label: 'POTENTIAL FIRE' }, { key: 'Confirmed Fire', label: 'CONFIRMED FIRE' }
+];
+function readProbability(probabilities, className) {
+  if (!probabilities || typeof probabilities !== 'object') return null;
+  if (Object.prototype.hasOwnProperty.call(probabilities, className)) {
+    const raw = probabilities[className];
+    if (raw === null || raw === undefined || raw === '') return null;
+    const num = Number(raw);
+    return Number.isNaN(num) ? null : num;
+  }
+  return null;
+}
+function normalizePrediction(p) {
+  if (p === null || p === undefined || p === '') return null;
+  const t = String(p).trim().toLowerCase();
+  if (t === 'none') return 'None';
+  if (t === 'potential fire' || t === 'potential') return 'Potential Fire';
+  if (t === 'confirmed fire' || t === 'confirmed') return 'Confirmed Fire';
+  return String(p);
+}
+function factorLevel(c) { return c === 'Confirmed Fire' ? 'crit' : c === 'Potential Fire' ? 'warn' : 'safe'; }
+function esc(s) { return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+function renderFireRiskFactor(payload) {
+  const model = (payload && payload.ml) || {};
+  const pred = normalizePrediction(model.prediction != null ? model.prediction : (payload && payload.prediction));
+  const probabilities = model.probabilities || (payload && payload.fire_probability) || null;
+  const timestamp = payload && (payload.last_successful_reading || payload.timestamp);
+  const status = model.model_status ? String(model.model_status) : 'unavailable';
+  const experimental = !!model.experimental;
+
+  factorModelStatus.textContent = 'model: ' + status + (experimental ? ' \u00b7 experimental' : '');
+  factorUpdated.textContent = timestamp ? 'Last update: ' + new Date(timestamp).toLocaleTimeString() : 'Last update: \u2014';
+
+  const bars = FACTOR_CLASSES.map((i) => ({ key: i.key, label: i.label, p: readProbability(probabilities, i.key) }));
+  factorProbs.innerHTML = '';
+  bars.forEach((item) => {
+    const div = document.createElement('div');
+    const tone = item.key === 'Confirmed Fire' ? 'breach' : item.key === 'Potential Fire' ? 'watch' : 'ok';
+    div.className = 'reason ' + tone + (pred === item.key ? ' factor-active' : '');
+    const pct = item.p === null ? 'N/A' : Math.round(item.p * 1000) / 10 + '%';
+    const width = item.p === null ? 0 : Math.max(0, Math.min(100, item.p * 100));
+    div.innerHTML = '<span class="metric">' + item.label + '</span><span class="val">' + pct + '</span>' +
+      '<span class="factor-prob-fill"><span style="width:' + width + '%"></span></span>';
+    factorProbs.appendChild(div);
+  });
+
+  const predictedProb = pred ? readProbability(probabilities, pred) : null;
+  const displayName = pred ? (FACTOR_CLASSES.find((c) => c.key === pred) || { label: pred }).label : '\u2014';
+  const lvl = pred ? factorLevel(pred) : 'unknown';
+  $('fireRiskFactor').setAttribute('data-level', lvl);
+  factorPrediction.textContent = displayName;
+  factorConfidence.textContent = pred ? displayName : '\u2014';
+  factorGaugeFg.setAttribute('data-level', lvl);
+  factorGaugeFg.style.strokeDashoffset = predictedProb === null ? String(CIRC)
+    : String(CIRC - (Math.max(0, Math.min(100, predictedProb * 100)) / 100) * CIRC);
+
+  if (status === 'unavailable' || pred === null) {
+    factorSub.textContent = 'Model unavailable \u2014 no Fire Risk Factor until a prediction is returned.';
+  } else {
+    const pTxt = predictedProb === null ? 'N/A' : (Math.round(predictedProb * 1000) / 10) + '%';
+    factorSub.textContent = 'Fire Risk Factor: ' + displayName + ' \u00b7 probability ' + pTxt +
+      (experimental ? ' \u00b7 experimental model' : '');
+  }
+}
+
+function formatReading(v, d) { return (v === null || v === undefined || Number.isNaN(Number(v))) ? 'N/A' : Number(v).toFixed(d); }
+function breachLevel(key, value) {
+  const t = THRESH[key];
+  if (t == null || value === null || value === undefined) return 'ok';
+  if (t.invert) { if (value <= t.breach) return 'breach'; if (value <= t.watch) return 'watch'; return 'ok'; }
+  if (value >= t.breach) return 'breach'; if (value >= t.watch) return 'watch'; return 'ok';
+}
+function connectionState(payload) {
+  const esp = (payload && payload.esp) || {};
+  if (!esp.reachable) return { label: 'ESP OFFLINE', level: 'crit' };
+  if (esp.stale) return { label: 'STALE DATA', level: 'warn' };
+  return { label: 'ESP ONLINE', level: 'safe' };
+}
+function applyChip(el, label, level) { if (el) { el.textContent = label; el.setAttribute('data-level', level); } }
+
+function fmtUptime(ms) {
+  if (ms == null || Number.isNaN(Number(ms))) return '\u2014';
+  const s = Math.floor(Number(ms) / 1000);
+  return String(Math.floor(s / 3600)).padStart(2, '0') + ':' + String(Math.floor((s % 3600) / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+}
+
+/* ---------- silence (browser-only) + owl post ---------- */
+let silencedUntil = 0, lastRiskLevel = null;
+function owlNotify(title, msg) { if (Date.now() >= silencedUntil && window.Magic) window.Magic.owl(title, msg); }
+
+/* ---------- charts from real history ---------- */
+function drawChart(svgId, values, unit, rangeId) {
+  const svg = $(svgId), rng = $(rangeId);
+  const pts = values.filter((v) => v !== null && v !== undefined && !Number.isNaN(Number(v))).map(Number);
+  if (pts.length < 2) {
+    svg.innerHTML = '<text x="200" y="78" text-anchor="middle" font-size="12" fill="#777B7B" font-family="Cormorant Garamond,serif" font-style="italic">Awaiting more readings\u2026</text>';
+    rng.textContent = pts.length ? 'latest ' + pts[0] + unit : '\u2014';
+    return;
+  }
+  let lo = Math.min.apply(null, pts), hi = Math.max.apply(null, pts);
+  if (hi === lo) { hi += 1; lo -= 1; }
+  const x = (i) => 8 + (i / (pts.length - 1)) * 384, y = (v) => 136 - ((v - lo) / (hi - lo)) * 118;
+  const line = pts.map((v, i) => (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1)).join(' ');
+  svg.innerHTML = '<defs><linearGradient id="chartfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C5A15B" stop-opacity=".35"/><stop offset="1" stop-color="#C5A15B" stop-opacity="0"/></linearGradient></defs>' +
+    '<line class="grid-l" x1="0" x2="400" y1="18" y2="18"/><line class="grid-l" x1="0" x2="400" y1="77" y2="77"/><line class="grid-l" x1="0" x2="400" y1="136" y2="136"/>' +
+    '<path class="ar" d="' + line + ' L392 136 L8 136Z"/><path class="ln" d="' + line + '" vector-effect="non-scaling-stroke"/>';
+  rng.textContent = 'min ' + lo.toFixed(1) + unit + ' \u00b7 max ' + hi.toFixed(1) + unit;
+}
+
+function render(payload) {
+  const sensors = (payload && payload.sensors) || {};
+  const risk = (payload && payload.risk) || {};
+  const ml = (payload && payload.ml) || {};
+  const esp = (payload && payload.esp) || {};
+  const conn = connectionState(payload);
+
+  state.temp = sensors.temperature;
+  state.hum = sensors.humidity;
+  state.press = sensors.pressure != null ? sensors.pressure : sensors.atmospheric_pressure;
+  state.gas = sensors.mq4 != null ? sensors.mq4 : sensors.gas;
+
+  /* --- Darkness Index: the score and level come from the backend; nothing is recalculated here --- */
+  const score = risk.score;
+  const numericScore = (score === null || score === undefined) ? null : Number(score);
+  const lvlKey = risk.level ? String(risk.level).toLowerCase() : null;
+  const rt = lvlKey && RISK_TEXT[lvlKey] ? RISK_TEXT[lvlKey] : null;
+  const riskAttr = rt ? lvlKey : 'unknown';
+  $('darkness').setAttribute('data-risk', riskAttr);
+  $('heroRisk').setAttribute('data-risk', riskAttr);
+  gaugeFg.setAttribute('data-risk', riskAttr);
+
+  if (numericScore === null || Number.isNaN(numericScore)) {
+    gaugeFg.style.strokeDashoffset = String(CIRC);
+    gaugeFg.setAttribute('data-level', 'unknown');
+    gaugeScore.textContent = '\u2014';
+  } else {
+    gaugeFg.style.strokeDashoffset = String(CIRC - (Math.max(0, Math.min(100, numericScore)) / 100) * CIRC);
+    gaugeFg.setAttribute('data-level', rt ? rt.lvl : 'unknown');
+    gaugeScore.textContent = String(numericScore);
+  }
+  $('riskState').firstChild.nodeValue = rt ? rt.name : 'Awaiting the seers';
+  $('riskStateSub').textContent = rt ? rt.sub : 'No risk value reported yet.';
+  $('heroRiskText').textContent = rt ? rt.name : 'Awaiting the seers\u2026';
+  document.querySelectorAll('#riskLegend span').forEach((s) => s.classList.toggle('on', s.getAttribute('data-risk') === riskAttr));
+  document.body.classList.toggle('emergency', lvlKey === 'critical' || normalizePrediction(ml.prediction) === 'Confirmed Fire');
+  if (lvlKey && lvlKey !== lastRiskLevel && (lvlKey === 'high' || lvlKey === 'critical') && lastRiskLevel !== null) {
+    owlNotify('Owl post from the Forest', 'The Darkness Index has risen to ' + RISK_TEXT[lvlKey].name + '.');
+  }
+  lastRiskLevel = lvlKey || lastRiskLevel;
+
+  const predLabel = (ml.prediction === null || ml.prediction === undefined || ml.prediction === '') ? '\u2014' : String(ml.prediction);
+  verdictText.textContent = 'Fire Prediction: ' + predLabel;
+  const scoreLabel = (numericScore === null || Number.isNaN(numericScore)) ? 'N/A' : numericScore + '/100';
+  verdictSub.textContent = 'Risk Score: ' + scoreLabel + ' \u00b7 ' + (risk.level ? String(risk.level) : '\u2014');
+
+  reasonList.innerHTML = '';
+  Object.keys(SENSOR_META).forEach((key) => {
+    const meta = SENSOR_META[key], value = state[key], lvl = breachLevel(key, value);
+    const div = document.createElement('div');
+    div.className = 'reason ' + lvl;
+    const tag = value === null || value === undefined ? 'unavailable'
+      : (lvl === 'breach' ? 'over threshold' : (lvl === 'watch' ? 'approaching limit' : 'nominal'));
+    const shown = formatReading(value, 1);
+    div.innerHTML = '<span class="metric">' + meta.label + '</span><span class="val">' + shown + (shown === 'N/A' ? '' : meta.unit) + ' \u00b7 ' + tag + '</span>';
+    reasonList.appendChild(div);
+
+    const box = $('box-' + key);
+    const missing = value === null || value === undefined;
+    if (box) {
+      box.classList.remove('breach', 'watch', 'missing');
+      if (missing) box.classList.add('missing');
+      else if (lvl !== 'ok') box.classList.add(lvl);
+      box.setAttribute('data-level', missing ? 'unknown' : (lvl === 'breach' ? 'crit' : lvl === 'watch' ? 'warn' : 'safe'));
+    }
+    const st = $('st-' + key);
+    if (st) st.textContent = missing ? (esp.reachable ? 'NO DATA' : 'OFFLINE') : (esp.stale ? 'STALE' : (lvl === 'breach' ? 'OVER LIMIT' : lvl === 'watch' ? 'WATCH' : 'LIVE'));
+    const valueEl = $('val-' + key);
+    if (valueEl) valueEl.innerHTML = shown + '<span class="s-unit">' + meta.unit + '</span>';
+  });
+
+  /* --- Wizarding Network --- */
+  [statusChip, headerStatus, liveIndicator].forEach((c) => applyChip(c, conn.label, conn.level));
+  $('heroSeal').setAttribute('data-level', conn.level);
+  $('network').setAttribute('data-level', conn.level);
+  $('heroLink').textContent = conn.label;
+  $('netviz').classList.toggle('offline', conn.level === 'crit');
+  $('kvGateway').textContent = !esp.reachable ? 'Offline' : 'Reachable' + (esp.status ? ' \u00b7 ' + esp.status : '');
+  $('kvStale').textContent = !esp.reachable ? 'No live data' : (esp.stale ? 'STALE \u2014 data is old' : 'Fresh');
+  $('kvNode').textContent = esp.node_online === true ? 'Online' + (payload.node_id ? ' \u00b7 ' + payload.node_id : '')
+    : esp.node_online === false ? 'Offline / silent' : '\u2014';
+  $('kvIp').textContent = esp.gateway_ip || esp.ip || '\u2014';
+  $('uptime').textContent = esp.uptime_ms != null ? fmtUptime(esp.uptime_ms) : '\u2014';
+  $('kvErr').textContent = esp.last_error ? 'last error: ' + esp.last_error : '';
+
+  const hist = Array.isArray(payload.history) ? payload.history : [];
+  const scores = hist.map((r) => r.risk_score).filter((v) => v !== null && v !== undefined);
+  let trendArrow = '\u2192 insufficient history';
+  if (scores.length > 3) {
+    const latest = scores[scores.length - 1], prior = scores[scores.length - 4];
+    trendArrow = latest > prior ? '\u2191 rising' : (latest < prior ? '\u2193 falling' : '\u2192 steady');
+  } else if (scores.length > 0) trendArrow = '\u2192 ' + scores.length + ' real sample' + (scores.length === 1 ? '' : 's');
+  analyticsTrend.textContent = 'trend: ' + trendArrow;
+  analyticsFoot.textContent = 'Model: ' + (ml.model_status ? String(ml.model_status) : 'unavailable') + (ml.experimental ? ' (experimental)' : '');
+
+  const ts = payload.last_successful_reading || payload.timestamp;
+  lastSync.textContent = ts ? 'Last sync: ' + new Date(ts).toLocaleTimeString() : 'Last sync: \u2014';
+  const seenEl = $('h-seen');
+  if (!esp.reachable) seenEl.textContent = 'offline';
+  else if (payload.last_successful_reading) seenEl.textContent = new Date(payload.last_successful_reading).toLocaleString();
+  else seenEl.textContent = '\u2014';
+
+  /* --- Forbidden Forest telemetry --- */
+  $('histCount').textContent = String(hist.length);
+  drawChart('chartRisk', hist.map((r) => r.risk_score), '', 'histRiskRange');
+  drawChart('chartTemp', hist.map((r) => r.temperature), '\u00b0C', 'histTempRange');
+  const used = risk.used_sensors ? Object.keys(risk.used_sensors) : [], miss = risk.missing_sensors || [];
+  $('fUsed').textContent = used.length ? used.join(', ') : '\u2014';
+  $('fMissing').textContent = miss.length ? miss.join(', ') : 'none';
+  $('fSmoke').textContent = sensors.smoke == null ? 'Not reported' : sensors.smoke;
+  $('fFlame').textContent = sensors.flame == null ? 'Not reported' : sensors.flame;
+  $('fNode').textContent = payload.node_id || '\u2014';
+  $('fParse').textContent = payload.parse_error ? 'Parse error: ' + payload.parse_error : (payload.raw_message ? 'OK' : '\u2014');
+  $('fRaw').textContent = payload.raw_message ? String(payload.raw_message) : '\u2014';
+
+  /* --- Marauder's Map markers (real link status on illustrative layout) --- */
+  const gl = !esp.reachable ? 'crit' : esp.stale ? 'warn' : 'safe';
+  const nl = esp.node_online === true ? 'safe' : esp.node_online === false ? 'crit' : 'unknown';
+  $('mkGate').setAttribute('data-level', gl);
+  $('mkNode').setAttribute('data-level', nl);
+  $('mapAuraG').parentNode.querySelectorAll('#mapAuraG').forEach((a) => a.style.setProperty('--lvl', 'var(--' + (gl === 'safe' ? 'emerald' : gl === 'warn' ? 'amber' : 'crimson') + ')'));
+  $('mapAuraN').style.setProperty('--lvl', 'var(--' + (nl === 'safe' ? 'emerald' : nl === 'crit' ? 'crimson' : 'smoke') + ')');
+  $('mapGate').textContent = conn.label + (esp.gateway_ip ? ' \u00b7 ' + esp.gateway_ip : '');
+  $('mapNode').textContent = esp.node_online === true ? 'Online' : esp.node_online === false ? 'Offline / silent' : 'Status unknown';
+
+  renderFireRiskFactor(payload);
+}
+
+function offlinePayload() {
+  return {
+    esp: { reachable: false, stale: true, status: 'offline' },
+    sensors: { temperature: null, humidity: null, pressure: null, mq4: null, gas: null },
+    risk: { score: null, level: null },
+    ml: { prediction: null, probabilities: null, model_status: 'unavailable' },
+    last_successful_reading: null, history: []
+  };
+}
+async function poll() {
+  try {
+    const response = await fetch(API_BASE + '/api/data', { cache: 'no-store' });
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    render(await response.json());
+  } catch (err) {
+    render(offlinePayload());
+    lastSync.textContent = 'Last sync: backend unreachable';
+  }
+}
+poll();
+setInterval(poll, POLL_MS);
+
+/* ---------- map decoration (static trees) ---------- */
+(function () {
+  const g = $('mapTrees'); let s = '', seed = 11;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 90; i++) {
+    const x = rnd() * 800, y = 30 + rnd() * 330, h = 14 + rnd() * 16;
+    s += '<path d="M' + x.toFixed(0) + ' ' + y.toFixed(0) + 'l-' + (h / 3).toFixed(0) + ' ' + h.toFixed(0) + 'h' + (h * 2 / 3).toFixed(0) + 'z"/>';
+  }
+  g.innerHTML = s;
+})();
+
+/* ---------- Defensive Spell: explicit confirmation, then POST /api/deploy ---------- */
+const deployBtn = $('deployBtn'), modal = $('spellModal'), cancelBtn = $('spellCancel'), confirmBtn = $('spellConfirm');
+let deploying = false, lastFocus = null;
+function setNote(text, kind) { controlsNote.textContent = text; controlsNote.className = 'controls-note' + (kind ? ' ' + kind : ''); }
+function openModal() {
+  if (deploying) return;
+  lastFocus = document.activeElement; modal.hidden = false; modal.classList.add('open'); cancelBtn.focus();
+}
+function closeModal() { modal.classList.remove('open'); modal.hidden = true; if (lastFocus) lastFocus.focus(); }
+deployBtn.addEventListener('click', openModal);            /* opening the scroll never sends anything */
+cancelBtn.addEventListener('click', closeModal);
+modal.addEventListener('mousedown', (e) => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', (e) => {
+  if (modal.hidden) return;
+  if (e.key === 'Escape') { closeModal(); return; }
+  if (e.key === 'Tab') {
+    const f = [cancelBtn, confirmBtn];
+    const i = f.indexOf(document.activeElement);
+    if (e.shiftKey && i <= 0) { e.preventDefault(); f[1].focus(); }
+    else if (!e.shiftKey && i === 1) { e.preventDefault(); f[0].focus(); }
+    else if (i === -1) { e.preventDefault(); f[0].focus(); }
+  }
+});
+confirmBtn.addEventListener('click', async function () {
+  if (deploying) return;
+  deploying = true; closeModal();
+  const label = $('deployLabel'), sub = $('deploySub');
+  deployBtn.disabled = true; deployBtn.classList.add('casting');
+  label.textContent = 'CASTING\u2026'; sub.textContent = 'Sending DEPLOY command';
+  setNote('Sending deploy command\u2026');
+  let ok = false;
+  try {
+    const response = await fetch(API_BASE + '/api/deploy', { method: 'POST' });
+    let result = {};
+    try { result = await response.json(); } catch (e) { result = {}; }
+    if (response.ok && result.status === 'success') {
+      ok = true;
+      label.textContent = 'SPELL CAST'; sub.textContent = 'Suppression command delivered';
+      setNote('Success: ' + (result.message || 'DEPLOY sent') + ' at ' + new Date().toLocaleTimeString(), 'ok');
+    } else {
+      label.textContent = 'SPELL FAILED'; sub.textContent = 'Suppression was NOT confirmed';
+      const offline = /timeout|unreachable|failed/i.test(String(result.message || ''));
+      setNote((offline ? 'ESP offline: ' : 'Failure: ') + (result.message || ('HTTP ' + response.status)), 'bad');
+    }
+  } catch (err) {
+    label.textContent = 'SPELL FAILED'; sub.textContent = 'Suppression was NOT confirmed';
+    setNote('Offline: could not reach backend (' + err.message + ')', 'bad');
+  }
+  deployBtn.classList.remove('casting');
+  setTimeout(function () {
+    deployBtn.disabled = false; deploying = false;
+    label.textContent = 'CAST AQUA ERUCTO'; sub.textContent = 'Deploy Fire Suppression System';
+  }, 3000);
+});
+
+$('silenceBtn').addEventListener('click', function () {
+  silencedUntil = Date.now() + 10 * 60 * 1000;
+  setNote('Owl alerts silenced for 10 minutes (browser only \u2014 the backend and its email alerts are unaffected).');
+});
+$('testBtn').addEventListener('click', async function () {
+  const btn = this; btn.disabled = true; const keep = btn.textContent; btn.textContent = 'Testing\u2026';
+  try {
+    const response = await fetch(API_BASE + '/api/health', { cache: 'no-store' });
+    const health = await response.json(); const esp = health.esp || {};
+    let msg;
+    if (!esp.reachable) msg = 'Test: ESP OFFLINE';
+    else if (esp.stale) msg = 'Test: STALE DATA';
+    else msg = 'Test: ESP ONLINE \u2014 last reading ' + (health.last_successful_reading || 'n/a');
+    setNote(msg, esp.reachable && !esp.stale ? 'ok' : 'bad');
+  } catch (err) { setNote('Test failed: backend unreachable', 'bad'); }
+  btn.disabled = false; btn.textContent = keep;
+});
+
+/* ---------- nav scroll-spy for in-page sections ---------- */
+(function () {
+  const map = { hall: 'hall', forest: 'forest', map: 'map' };
+  const links = {}; document.querySelectorAll('.nav-link[data-nav]').forEach((a) => { links[a.dataset.nav] = a; });
+  function setActive(k) { Object.keys(map).forEach((n) => { if (links[n]) { links[n].classList.toggle('active', n === k); } }); }
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); }), { rootMargin: '-40% 0px -55% 0px' });
+  Object.keys(map).forEach((id) => { const s = $(id); if (s) io.observe(s); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090B0E">
+<meta name="description" content="System configuration.">
+<title>Potions & Runes — The Enchanted Forest</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/magic.css">
+</head>
+<body>
+
+<a class="sr-only" href="#main">Skip to content</a>
+<header class="app-header">
+  <div class="header-inner">
+    <a href="/" class="brand" aria-label="The Enchanted Forest — home">
+      <svg class="crest" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8cf94"/><stop offset="1" stop-color="#80663D"/></linearGradient></defs>
+<path d="M32 3 56 11v22c0 14-10 23-24 28C18 56 8 47 8 33V11z" fill="#101722" stroke="url(#cg)" stroke-width="2.5"/>
+<path d="M32 9 50 15v18c0 10-7 17-18 21C21 50 14 43 14 33V15z" fill="none" stroke="#C5A15B" stroke-opacity=".5" stroke-width="1"/>
+<path d="M32 16l-9 12h5l-7 10h6l-4 7h18l-4-7h6l-7-10h5z" fill="#3C8060" stroke="#6fc29a" stroke-width=".8"/>
+<path d="M32 30c3 3 5 6 5 9a5 5 0 0 1-10 0c0-1.5.6-2.6 1.4-3.6.4 1.6 1.4 2.4 2.4 2.4.8-1.6.6-4.6 1.2-7.8z" fill="#D99B40"/>
+<rect x="31" y="46" width="2" height="8" fill="#C5A15B"/></svg>
+      <span><span class="brand-name">THE ENCHANTED FOREST</span><span class="brand-sub">Department of Magical Forest Protection</span></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav class="app-nav" aria-label="Main">
+      <a href="/" class="nav-link" data-nav="hall">The Great Hall<small>Main Dashboard</small></a>
+      <a href="/#forest" class="nav-link" data-nav="forest">Forbidden Forest<small>Environmental Monitoring</small></a>
+      <a href="/#map" class="nav-link" data-nav="map">The Marauder’s Map<small>Forest Overview</small></a>
+      <a href="logs.html" class="nav-link" data-nav="logs">Spellbook Archives<small>Historical Logs</small></a>
+      <a href="settings.html" class="nav-link active" data-nav="settings" aria-current="page">Potions &amp; Runes<small>System Configuration</small></a>
+      <a href="about.html" class="nav-link" data-nav="about">About the Order<small>About Project</small></a>
+    </nav>
+    <div class="header-status" title="Magical status seal — gateway connection">
+      <span class="status-chip" data-seal="1" data-level="unknown">Connecting…</span>
+    </div>
+  </div>
+</header>
+<main class="app-main" id="main">
+  <h1 class="page-title">POTIONS &amp; RUNES LABORATORY</h1>
+  <div class="orn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l2.4 8.6L23 12l-8.6 2.4L12 23l-2.4-8.6L1 12l8.6-2.4z"/></svg></div>
+  <p class="page-sub">Brew your thresholds and inscribe your notification runes.</p>
+
+  <div class="notice reveal"><b>Note:</b> these settings are stored in <i>this browser only</i> (localStorage). They are preferences saved on this device; the Flask backend does not read them.</div>
+
+  <div class="lab">
+    <section class="tome settings-section reveal">
+      <h3>Alert Thresholds</h3>
+      <p class="lede">Potion levels for each environmental ward.</p>
+      <div class="threshold-card potion-card">
+        <svg class="potion" viewBox="0 0 56 70" aria-hidden="true" data-for="tempRange" data-min="25" data-max="60" style="color:#D99B40">
+          <defs><clipPath id="pc-tempRange"><path d="M20 24h16v10c10 4 16 12 16 22 0 7-5 12-12 12H16C9 68 4 63 4 56c0-10 6-18 16-22z"/></clipPath></defs>
+          <rect x="22" y="3" width="12" height="9" rx="2" fill="#80663D"/><rect x="20" y="10" width="16" height="6" rx="2" fill="#C5A15B"/>
+          <rect class="liq" x="0" y="40" width="56" height="30" fill="currentColor" opacity=".85" clip-path="url(#pc-tempRange)"/>
+          <path d="M20 24h16v10c10 4 16 12 16 22 0 7-5 12-12 12H16C9 68 4 63 4 56c0-10 6-18 16-22z" fill="none" stroke="#C5A15B" stroke-width="2"/>
+          <path d="M16 44c0 0 4-6 8-8" stroke="#fff" stroke-opacity=".4" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        <div>
+          <div class="threshold-header">
+            <label class="threshold-label" for="tempRange">Temperature threshold<small>The flame temperature</small></label>
+            <span class="threshold-value" id="tempVal">35°C</span>
+          </div>
+          <input type="range" min="25" max="60" value="35" id="tempRange">
+        </div>
+      </div>
+      <div class="threshold-card potion-card">
+        <svg class="potion" viewBox="0 0 56 70" aria-hidden="true" data-for="humRange" data-min="10" data-max="60" style="color:#4aa3c7">
+          <defs><clipPath id="pc-humRange"><path d="M20 24h16v10c10 4 16 12 16 22 0 7-5 12-12 12H16C9 68 4 63 4 56c0-10 6-18 16-22z"/></clipPath></defs>
+          <rect x="22" y="3" width="12" height="9" rx="2" fill="#80663D"/><rect x="20" y="10" width="16" height="6" rx="2" fill="#C5A15B"/>
+          <rect class="liq" x="0" y="40" width="56" height="30" fill="currentColor" opacity=".85" clip-path="url(#pc-humRange)"/>
+          <path d="M20 24h16v10c10 4 16 12 16 22 0 7-5 12-12 12H16C9 68 4 63 4 56c0-10 6-18 16-22z" fill="none" stroke="#C5A15B" stroke-width="2"/>
+          <path d="M16 44c0 0 4-6 8-8" stroke="#fff" stroke-opacity=".4" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        <div>
+          <div class="threshold-header">
+            <label class="threshold-label" for="humRange">Humidity floor<small>Forest moisture</small></label>
+            <span class="threshold-value" id="humVal">30%</span>
+          </div>
+          <input type="range" min="10" max="60" value="30" id="humRange">
+        </div>
+      </div>
+      <div class="threshold-card potion-card">
+        <svg class="potion" viewBox="0 0 56 70" aria-hidden="true" data-for="smokeRange" data-min="10" data-max="150" style="color:#777B7B">
+          <defs><clipPath id="pc-smokeRange"><path d="M20 24h16v10c10 4 16 12 16 22 0 7-5 12-12 12H16C9 68 4 63 4 56c0-10 6-18 16-22z"/></clipPath></defs>
+          <rect x="22" y="3" width="12" height="9" rx="2" fill="#80663D"/><rect x="20" y="10" width="16" height="6" rx="2" fill="#C5A15B"/>
+          <rect class="liq" x="0" y="40" width="56" height="30" fill="currentColor" opacity=".85" clip-path="url(#pc-smokeRange)"/>
+          <path d="M20 24h16v10c10 4 16 12 16 22 0 7-5 12-12 12H16C9 68 4 63 4 56c0-10 6-18 16-22z" fill="none" stroke="#C5A15B" stroke-width="2"/>
+          <path d="M16 44c0 0 4-6 8-8" stroke="#fff" stroke-opacity=".4" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        <div>
+          <div class="threshold-header">
+            <label class="threshold-label" for="smokeRange">Smoke threshold<small>Veil of smoke</small></label>
+            <span class="threshold-value" id="smokeVal">50 ppm</span>
+          </div>
+          <input type="range" min="10" max="150" value="50" id="smokeRange">
+        </div>
+      </div>
+      <div class="threshold-card potion-card">
+        <svg class="potion" viewBox="0 0 56 70" aria-hidden="true" data-for="gasRange" data-min="20" data-max="250" style="color:#3C8060">
+          <defs><clipPath id="pc-gasRange"><path d="M20 24h16v10c10 4 16 12 16 22 0 7-5 12-12 12H16C9 68 4 63 4 56c0-10 6-18 16-22z"/></clipPath></defs>
+          <rect x="22" y="3" width="12" height="9" rx="2" fill="#80663D"/><rect x="20" y="10" width="16" height="6" rx="2" fill="#C5A15B"/>
+          <rect class="liq" x="0" y="40" width="56" height="30" fill="currentColor" opacity=".85" clip-path="url(#pc-gasRange)"/>
+          <path d="M20 24h16v10c10 4 16 12 16 22 0 7-5 12-12 12H16C9 68 4 63 4 56c0-10 6-18 16-22z" fill="none" stroke="#C5A15B" stroke-width="2"/>
+          <path d="M16 44c0 0 4-6 8-8" stroke="#fff" stroke-opacity=".4" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        <div>
+          <div class="threshold-header">
+            <label class="threshold-label" for="gasRange">Gas threshold<small>Atmospheric toxicity</small></label>
+            <span class="threshold-value" id="gasVal">100 ppm</span>
+          </div>
+          <input type="range" min="20" max="250" value="100" id="gasRange">
+        </div>
+      </div>
+    </section>
+
+    <section class="tome settings-section reveal">
+      <h3>Notification Runes</h3>
+      <p class="lede">Inscribe how the Guardians are summoned.</p>
+      <div class="toggle-row">
+        <div class="toggle-info"><span class="toggle-label">Push alerts</span><span class="toggle-desc">Send browser notifications on Alert/Fire state</span></div>
+        <label class="toggle"><span class="sr-only">Push alerts</span><input type="checkbox" id="togglePush" checked><span class="toggle-slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-info"><span class="toggle-label">SMS / Email alerts</span><span class="toggle-desc">Notify forest authorities directly</span></div>
+        <label class="toggle"><span class="sr-only">SMS / Email alerts</span><input type="checkbox" id="toggleSms" checked><span class="toggle-slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-info"><span class="toggle-label">Auto-suppression</span><span class="toggle-desc">Automatically deploy extinguisher on Critical Risk</span></div>
+        <label class="toggle"><span class="sr-only">Auto-suppression</span><input type="checkbox" id="toggleAuto"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="save-row">
+        <button class="save-btn" id="saveBtn" type="button">Seal the Settings</button>
+        <span class="save-msg" id="saveMsg" role="status"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg> Settings saved</span>
+      </div>
+    </section>
+  </div>
+</main>
+<footer class="app-footer">
+  <div class="orn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l2.4 8.6L23 12l-8.6 2.4L12 23l-2.4-8.6L1 12l8.6-2.4z"/></svg></div>
+  <b>THE ENCHANTED FOREST</b><br>
+  Protecting the Forbidden Forest, One Spell at a Time.<br>
+  <small>A themed interface for the Smart EcoGuard AI-IoT Forest Fire Detection &amp; Suppression System.</small>
+</footer>
+
+<script src="/static/magic.js" defer></script>
+<script>
+/* Settings controls \u2014 same behaviour and storage keys as before:
+   thresholds -> localStorage "ecoguard_thresholds", notifications -> "ecoguard_notifications" */
+(function () {
+  'use strict';
+  const ranges = [
+    { id: 'tempRange',  valId: 'tempVal',  suffix: '\u00b0C' },
+    { id: 'humRange',   valId: 'humVal',   suffix: '%' },
+    { id: 'smokeRange', valId: 'smokeVal', suffix: ' ppm' },
+    { id: 'gasRange',   valId: 'gasVal',   suffix: ' ppm' }
+  ];
+  function paint(r) {
+    const input = document.getElementById(r.id), output = document.getElementById(r.valId);
+    output.textContent = input.value + r.suffix;
+    const svg = document.querySelector('.potion[data-for="' + r.id + '"]');
+    if (svg) {
+      const mn = Number(input.min), mx = Number(input.max), f = (Number(input.value) - mn) / (mx - mn);
+      const liq = svg.querySelector('.liq'), h = 14 + f * 42;
+      liq.setAttribute('y', String(70 - h)); liq.setAttribute('height', String(h));
+    }
+  }
+  ranges.forEach(function (r) {
+    const input = document.getElementById(r.id);
+    input.addEventListener('input', function () { paint(r); });
+  });
+
+  try {
+    const saved = JSON.parse(localStorage.getItem('ecoguard_thresholds'));
+    if (saved) {
+      if (saved.temp !== undefined) document.getElementById('tempRange').value = saved.temp;
+      if (saved.hum !== undefined) document.getElementById('humRange').value = saved.hum;
+      if (saved.smoke !== undefined) document.getElementById('smokeRange').value = saved.smoke;
+      if (saved.gas !== undefined) document.getElementById('gasRange').value = saved.gas;
+    }
+  } catch (e) { /* Ignore localStorage errors */ }
+  ranges.forEach(paint);
+
+  try {
+    const sn = JSON.parse(localStorage.getItem('ecoguard_notifications'));
+    if (sn) {
+      if (sn.push !== undefined) document.getElementById('togglePush').checked = sn.push;
+      if (sn.sms !== undefined) document.getElementById('toggleSms').checked = sn.sms;
+      if (sn.auto !== undefined) document.getElementById('toggleAuto').checked = sn.auto;
+    }
+  } catch (e) { /* Ignore localStorage errors */ }
+
+  document.getElementById('saveBtn').addEventListener('click', function () {
+    const thresholds = {
+      temp: parseInt(document.getElementById('tempRange').value, 10),
+      hum: parseInt(document.getElementById('humRange').value, 10),
+      smoke: parseInt(document.getElementById('smokeRange').value, 10),
+      gas: parseInt(document.getElementById('gasRange').value, 10)
+    };
+    try { localStorage.setItem('ecoguard_thresholds', JSON.stringify(thresholds)); } catch (e) { /* Ignore */ }
+    const notifications = {
+      push: document.getElementById('togglePush').checked,
+      sms: document.getElementById('toggleSms').checked,
+      auto: document.getElementById('toggleAuto').checked
+    };
+    try { localStorage.setItem('ecoguard_notifications', JSON.stringify(notifications)); } catch (e) { /* Ignore */ }
+    const msg = document.getElementById('saveMsg');
+    msg.classList.add('visible');
+    setTimeout(function () { msg.classList.remove('visible'); }, 2500);
+  });
+})();
+</script>
+</body>
+</html>
